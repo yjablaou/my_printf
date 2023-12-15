@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/15 18:06:52 by yojablao          #+#    #+#             */
+/*   Updated: 2023/12/15 19:14:40 by yojablao         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int ft_printf(const char *form, ...)
@@ -15,19 +27,14 @@ int ft_printf(const char *form, ...)
 		if(form[i] == '%')
 		{
 			if(form[++i] == '%')
-				ft_putchar(form[i++]);
+				k += ft_putchar(form[i]);
 			else
-				specifier(form[i],args);
+				k += specifier(form[i],args);
 		}
 		else
-			ft_putchar(form[i]);
+			k += ft_putchar(form[i]);
 		i++;
 	}
 	va_end(args);
-	return(0);
-}
-int main()
-{
-	unsigned int a =1000; 
-	ft_printf("youssef %s\n","jablaoui");
+	return(k);
 }

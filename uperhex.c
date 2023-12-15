@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_1.c                                     :+:      :+:    :+:   */
+/*   uperhex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yojablao <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 09:56:57 by yojablao          #+#    #+#             */
-/*   Updated: 2023/11/18 09:57:34 by yojablao         ###   ########.fr       */
+/*   Created: 2023/12/15 16:55:32 by yojablao          #+#    #+#             */
+/*   Updated: 2023/12/15 18:57:24 by yojablao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_putnbr(int n)
+int uperhex(unsigned long n)
 {
-	char	c;
-	int 	p;
+	int			cont;
+	const char	c[] = "0123456789ABCDEF";
 
-	p = 0;
-	if (n == -2147483648)
+	cont = 0;
+	if (n >= 16)
 	{
-		write(1, "-2147483648", 11);
-		return (11);
+		cont += uperhex(n / 16);
+		cont += uperhex(n % 16);
 	}
-	if (n < 0)
-	{
-		write(1, "-", 1);
-		n = -n;
-		p++;
-	}
-	if (n >= 10)
-		p += ft_putnbr(n / 10);
-	c = n % 10 + '0';
-	p += ft_putchar(c);
-	return (p);
+	else
+		cont += ft_putchar(c[n]);
+	return (cont);
 }

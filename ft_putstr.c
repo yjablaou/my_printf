@@ -12,16 +12,20 @@
 
 #include "ft_printf.h"
 
-void	ft_putstr(const char *s)
+int	ft_putstr(const char *s)
 {
 	int	i;
 
 	i = 0;
 	if (s == NULL)
-		return ;
+	{
+		ft_putstr("(null)");
+		return (6);
+	}
 	while (s[i])
 	{
 		ft_putchar(s[i]);
 		i++;
 	}
+	return(i);
 }

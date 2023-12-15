@@ -1,11 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putu.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/15 18:24:21 by yojablao          #+#    #+#             */
+/*   Updated: 2023/12/15 18:24:22 by yojablao         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void	ft_putu(unsigned int n)
+int	ft_putu(unsigned int n)
 {
 	char	c;
+	int		p;
 
+	p = 0;
 	if (n >= 10)
-		ft_putnbr(n / 10);
+	{
+		p += ft_putnbr(n / 10);
+
+	}
 	c = n % 10 + '0';
-	ft_putchar(c);
+	p += ft_putchar(c);
+	return (p);
 }

@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_1.c                                     :+:      :+:    :+:   */
+/*   hex.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yojablao <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yojablao <yojablao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 09:56:57 by yojablao          #+#    #+#             */
-/*   Updated: 2023/11/18 09:57:34 by yojablao         ###   ########.fr       */
+/*   Created: 2023/12/14 19:26:33 by yojablao          #+#    #+#             */
+/*   Updated: 2023/12/15 19:04:30 by yojablao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_putnbr(int n)
+int	hex(unsigned long n)
 {
-	char	c;
-	int 	p;
+	const char	c[] = "0123456789abcdef";
+	int			p;
 
 	p = 0;
-	if (n == -2147483648)
+	if (n >= 16)
 	{
-		write(1, "-2147483648", 11);
-		return (11);
+		p += hex(n / 16);
+		p += hex(n % 16);
 	}
-	if (n < 0)
-	{
-		write(1, "-", 1);
-		n = -n;
-		p++;
-	}
-	if (n >= 10)
-		p += ft_putnbr(n / 10);
-	c = n % 10 + '0';
-	p += ft_putchar(c);
-	return (p);
+	else
+		p += ft_putchar(c[n]);
+	return(p);
 }
